@@ -1,23 +1,28 @@
 <template>
-  <div class="films">
-    <img :src="img"/>
-    <h4>{{ msg }}</h4>
+  <div class="movie" @click="selectMovie(movie)">
+    <img :src="getImgUrl()"/>
+    <h4>{{ movie.title }}</h4>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'films',
+  name: 'Movie',
   props: {
-    msg: String,
-    img: String
+    movie: Object,
+    selectMovie: Function
+  },
+  methods: {
+    getImgUrl() {
+      return `/images/${this.movie.imagesURL}`
+    },
   }
 }
 </script>
 
 <style lang="less" scoped>
 
-.films {
+.movie {
   display: flex;
   flex-direction: column;
   background-color: #17181b;

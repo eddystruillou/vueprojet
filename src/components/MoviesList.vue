@@ -3,23 +3,30 @@
     <!-- v-for est l'équivalent du for en js, ex: for(movie in movies) -->
     <Movie v-for="(movie, index) in movies" 
     :key="index" 
-    :msg="movie.title" 
-    :img="getImgUrl(movie)">
-    </Movie>
+    :movie="movie"
+    :selectMovie="selectMovie"
+    />
+    <Popup v-if="selectedMovie" 
+    :movie="selectedMovie"
+    :closeDetail="closeDetail"
+    />
   </div>
 </template>
 
 <script>
 import Movie from './Movie.vue'
+import Popup from './Popup.vue'
 export default {
   name: 'MoviesList',
   components: {
-    Movie
+    Movie,
+    Popup
   },
   //data est une function il va donc s'appliquer qu'à un seul component
   data () {
     return {
-      movies: null
+      movies: null,
+      selectedMovie: null
     }
   },
   async created() {
@@ -33,8 +40,11 @@ export default {
     }
   },
   methods: {
-    getImgUrl(movie) {
-      return `/images/${movie.imagesURL}`
+    selectMovie(movie) {
+      this.selectedMovie = movie
+    },
+    closeDetail() {
+      this.selectedMovie = null
     }
   }
 }
