@@ -58,5 +58,15 @@
       "title": "Interrail", 
       "imagesURL": "img10.jpg", 
       "synopsis": "C’est l’histoire d’un groupe d’amis fraîchement bacheliers qui font le tour de l’Europe en Interrail... Un apprentissage de la liberté et du groupe, pas toujours compatible mais qui sera la base éternelle de leur meilleur souvenir. "
+    },
+    {
+      "title": "The Incredibles 2", 
+      "imagesURL": "img13.jpg", 
+      "synopsis": "Notre famille de super-héros préférée est de retour! Cette fois c’est Hélène qui se retrouve sur le devant de la scène laissant à Bob le soin de mener à bien les mille et une missions de la vie quotidienne et de s’occuper de Violette, Flèche et de bébé Jack-Jack. C’est un changement de rythme difficile pour la famille d’autant que personne ne mesure réellement l’étendue des incroyables pouvoirs du petit dernier… Lorsqu’un nouvel ennemi fait surface, la famille et Frozone vont devoir s’allier comme jamais pour déjouer son plan machiavélique."
+    },
+    {
+      "title": "Hotel Transylvania 3: Summer Vacation", 
+      "imagesURL": "img14.jpg", 
+      "synopsis": "Notre famille de monstres préférée embarque pour une croisière de rêve afin que Drac puisse enfin souffler un peu et savourer des vacances au lieu de s’occuper de tout le monde à l’hôtel. Tout s’annonce à merveille pour la petite famille, entre matchs de volley monstres, excursions exotiques et séances de bronzette au clair de lune… Mais les vacances idéales prennent un tour inattendu lorsque Mavis se rend compte que Drac est tombé sous le charme de la mystérieuse Ericka, la capitaine humaine du navire, dont le secret les menace tous…"
     }
 ]

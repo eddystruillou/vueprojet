@@ -1,19 +1,28 @@
 <template>
-  <div class="movie" @click="$emit('clickOnMovie', movie)">
+  <div class="movie" @click="selectMovie()">
     <img :src="getImgUrl()"/>
     <h4>{{ movie.title }}</h4>
   </div>
 </template>
 
 <script>
+import { moviesState } from '../states/movies-state'
 export default {
   name: 'Movie',
   props: {
     movie: Object
   },
+  data () {
+    return {
+      moviesState
+    }
+  },
   methods: {
     getImgUrl() {
       return `/images/${this.movie.imagesURL}`
+    },
+    selectMovie() {
+      this.moviesState.selectedMovie = this.movie
     }
   }
 }

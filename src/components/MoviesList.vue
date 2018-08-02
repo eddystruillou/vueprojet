@@ -1,21 +1,19 @@
 <template>
   <div class="container">
     <!-- v-for est l'équivalent du for en js, ex: for(movie in movies) -->
-    <Movie v-for="(movie, index) in movies" 
+    <Movie v-for="(movie, index) in moviesState.movies" 
     :key="index" 
     :movie="movie"
-    @clickOnMovie="selectMovie"
     />
-    <Popup v-if="selectedMovie" 
-    :movie="selectedMovie"
-    @clickOnClose="closeDetail"
-    />
+    <Popup v-if="moviesState.selectedMovie"/>
   </div>
 </template>
 
 <script>
 import Movie from './Movie.vue'
 import Popup from './Popup.vue'
+import { moviesState } from '../states/movies-state'
+
 export default {
   name: 'MoviesList',
   components: {
@@ -25,26 +23,17 @@ export default {
   //data est une function il va donc s'appliquer qu'à un seul component
   data () {
     return {
-      movies: null,
-      selectedMovie: null
+      moviesState
     }
   },
   async created() {
     //fetch
     try {
       let response = await fetch('movies.json')
-      this.movies = await response.json();
+      this.moviesState.movies = await response.json();
 
     } catch (error) {
       console.log(error)
-    }
-  },
-  methods: {
-    selectMovie (movie) {
-      this.selectedMovie = movie
-    },
-    closeDetail () {
-      this.selectedMovie = null
     }
   }
 }

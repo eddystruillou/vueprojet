@@ -1,21 +1,32 @@
 <template>
   <div class="backgrou">
     <div class="cadre">
-      <h1>{{ movie.title }}</h1>
+      <h1>{{ moviesState.selectedMovie.title }}</h1>
       <div class="bloc">
-      <img :src="'/images/' + movie.imagesURL">
-      <p>{{ movie.synopsis }}</p>
+      <img :src="'/images/' + moviesState.selectedMovie.imagesURL">
+      <p>{{ moviesState.selectedMovie.synopsis }}</p>
       </div>
-      <button type="button" @click="$emit('clickOnClose')">Close</button>
+      <button type="button" @click="clickOnClose()">Close</button>
     </div>
   </div>
 </template>
 
 <script>
+import { moviesState } from '../states/movies-state'
 export default {
   name: 'Popup',
   props: {
     movie: Object
+  },
+  data () {
+    return {
+      moviesState
+    }
+  },
+  methods: {
+    clickOnClose () {
+      this.moviesState.selectedMovie = null
+    }
   }
 }
 </script>
