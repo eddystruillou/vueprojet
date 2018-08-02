@@ -2,8 +2,10 @@
   <div class="backgrou">
     <div class="cadre">
       <h1>{{ movie.title }}</h1>
-      <img :src="movie.imagesURL">
+      <div class="bloc">
+      <img :src="'/images/' + movie.imagesURL">
       <p>{{ movie.synopsis }}</p>
+      </div>
       <button type="button" @click="closeDetail()">Close</button>
     </div>
   </div>
@@ -42,15 +44,22 @@ export default {
     font-family: Verdana, sans-serif;
     margin-left: 15px;
   }
+  .bloc {
+    display: flex;
+  }
   p {
+    margin-top: 0px;
+    margin-right: 10px;
     color: white;
     font-family: Verdana, sans-serif;
     font-size: 20px;
-    margin-left: 15px;
   }
   img {
     width: 200px;
     margin-left: 15px;
+    margin-right: 10px;
+    padding-bottom: 15px;
+    float: left;
   }
   img:hover {
       transform: none;
