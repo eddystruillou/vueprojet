@@ -35,7 +35,7 @@ export default {
   flex-direction: column;
   margin-top: 10%;
   margin-left: 25%;
-  width: 50%;
+  width: 40%;
   background-color: #17181b;
   border-radius: 10px 10px 10px 10px;
   box-shadow: 0px 0px 15px black;
@@ -43,9 +43,6 @@ export default {
     color: white;
     font-family: Verdana, sans-serif;
     margin-left: 15px;
-  }
-  .bloc {
-    display: flex;
   }
   p {
     margin-top: 0px;
