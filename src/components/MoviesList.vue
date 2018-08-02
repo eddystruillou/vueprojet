@@ -4,11 +4,11 @@
     <Movie v-for="(movie, index) in movies" 
     :key="index" 
     :movie="movie"
-    :selectMovie="selectMovie"
+    @clickOnMovie="selectMovie"
     />
     <Popup v-if="selectedMovie" 
     :movie="selectedMovie"
-    :closeDetail="closeDetail"
+    @clickOnClose="closeDetail"
     />
   </div>
 </template>
@@ -40,10 +40,10 @@ export default {
     }
   },
   methods: {
-    selectMovie(movie) {
+    selectMovie (movie) {
       this.selectedMovie = movie
     },
-    closeDetail() {
+    closeDetail () {
       this.selectedMovie = null
     }
   }

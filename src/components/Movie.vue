@@ -1,5 +1,5 @@
 <template>
-  <div class="movie" @click="selectMovie(movie)">
+  <div class="movie" @click="$emit('clickOnMovie', movie)">
     <img :src="getImgUrl()"/>
     <h4>{{ movie.title }}</h4>
   </div>
@@ -9,13 +9,12 @@
 export default {
   name: 'Movie',
   props: {
-    movie: Object,
-    selectMovie: Function
+    movie: Object
   },
   methods: {
     getImgUrl() {
       return `/images/${this.movie.imagesURL}`
-    },
+    }
   }
 }
 </script>
