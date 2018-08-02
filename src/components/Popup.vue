@@ -23,9 +23,21 @@ export default {
       moviesState
     }
   },
+  created () {
+    document.addEventListener('keydown', this.closeWithEchap)
+  },
+  beforeDestroy () {
+    document.removeEventListener('keydown', this.closeWithEchap)
+  },
   methods: {
     clickOnClose () {
       this.moviesState.selectedMovie = null
+    },
+    closeWithEchap(event) {
+      console.log('echap')
+      if(event.keyCode === 27) {
+        this.clickOnClose()
+      }
     }
   }
 }
