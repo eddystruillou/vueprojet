@@ -1,28 +1,43 @@
 <template>
   <div class="movie" @click="selectMovie()">
-    <img :src="getImgUrl()"/>
+    <img :src="getImgUrl(movie)" />
+    <Loader v-if="loading.value"/>
     <h4>{{ movie.title }}</h4>
   </div>
 </template>
 
 <script>
+import Loader from './Loader.vue'
 import { moviesState } from '../states/movies-state'
+import { posterUtils } from '../mixins/poster-utils'
 export default {
   name: 'Movie',
+  components: {
+    Loader
+  },
+  mixins: [posterUtils],
   props: {
     movie: Object
   },
   data () {
     return {
-      moviesState
+      moviesState,
+      loading: {
+        value: false
+      }
     }
   },
   methods: {
-    getImgUrl() {
-      return `/images/${this.movie.imagesURL}`
-    },
-    selectMovie() {
-      this.moviesState.selectedMovie = this.movie
+    async selectMovie () {
+      // fetch
+    try {
+      this.loading.value = true
+      let response = await fetch('http://localhost:5000/filtreMovies/' + this.movie.id)
+      this.moviesState.selectedMovie = await response.json()
+      this.loading.value = false
+    } catch (error) {
+      console.log(error)
+    }
     }
   }
 }
@@ -31,12 +46,12 @@ export default {
 <style lang="less" scoped>
 
 .movie {
-  display: flex;
-  flex-direction: column;
+  position: relative;
   background-color: #17181b;
   margin-left: 10px;
   margin-right: 10px;
   margin-top: 35px;
+  height: 400px;
   h4 {
     font-family: Verdana, sans-serif;
     color: white;

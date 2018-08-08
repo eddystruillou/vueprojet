@@ -1,8 +1,9 @@
 <template>
   <div class="container">
     <!-- v-for est l'équivalent du for en js, ex: for(movie in movies) -->
-    <Movie v-for="(movie, index) in moviesState.movies" 
-    :key="index" 
+    <Loader class="load" v-if="loading.value"/>
+    <Movie v-for="(movie, index) in moviesState.movies"
+    :key="index"
     :movie="movie"
     />
     <Popup v-if="moviesState.selectedMovie"/>
@@ -12,26 +13,32 @@
 <script>
 import Movie from './Movie.vue'
 import Popup from './Popup.vue'
+import Loader from './Loader.vue'
 import { moviesState } from '../states/movies-state'
 
 export default {
   name: 'MoviesList',
   components: {
     Movie,
-    Popup
+    Popup,
+    Loader
   },
-  //data est une function il va donc s'appliquer qu'à un seul component
+  // data est une function il va donc s'appliquer qu'à un seul component
   data () {
     return {
-      moviesState
+      moviesState,
+      loading: {
+        value: false
+      }
     }
   },
-  async created() {
-    //fetch
+  async created () {
+    // fetch
     try {
-      let response = await fetch('movies.json')
-      this.moviesState.movies = await response.json();
-
+      this.loading.value = true
+      let response = await fetch('http://localhost:5000/Movies')
+      this.moviesState.movies = await response.json()
+      this.loading.value = false
     } catch (error) {
       console.log(error)
     }

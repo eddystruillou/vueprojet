@@ -1,11 +1,13 @@
 <template>
   <div id="app">
+<!--     <Test /> -->
     <Header msg="Movies"/>
     <MoviesList />
   </div>
 </template>
 
 <script>
+import Test from './components/Test.vue'
 import Header from './components/Header.vue'
 import MoviesList from './components/MoviesList.vue'
 import Movie from './components/Movie.vue'
@@ -15,7 +17,7 @@ export default {
   components: {
     Header,
     MoviesList,
-    Movie
+    Movie,
   }
 }
 </script>

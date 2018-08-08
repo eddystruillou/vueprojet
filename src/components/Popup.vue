@@ -3,7 +3,7 @@
     <div class="cadre">
       <h1>{{ moviesState.selectedMovie.title }}</h1>
       <div class="bloc">
-      <img :src="'/images/' + moviesState.selectedMovie.imagesURL">
+      <img :src="getImgUrl(moviesState.selectedMovie)">
       <p>{{ moviesState.selectedMovie.synopsis }}</p>
       </div>
       <button type="button" @click="clickOnClose()">Close</button>
@@ -13,8 +13,10 @@
 
 <script>
 import { moviesState } from '../states/movies-state'
+import { posterUtils } from '../mixins/poster-utils'
 export default {
   name: 'Popup',
+  mixins: [posterUtils],
   props: {
     movie: Object
   },
@@ -23,6 +25,16 @@ export default {
       moviesState
     }
   },
+  async created () {
+    // fetch
+    try {
+      let response = await fetch('http://localhost:5000/filtreMovies')
+      this.moviesState.movies = await response.json()
+    } catch (error) {
+      console.log(error)
+    }
+  },
+
   created () {
     document.addEventListener('keydown', this.closeWithEchap)
   },
@@ -33,9 +45,9 @@ export default {
     clickOnClose () {
       this.moviesState.selectedMovie = null
     },
-    closeWithEchap(event) {
+    closeWithEchap (event) {
       console.log('echap')
-      if(event.keyCode === 27) {
+      if (event.keyCode === 27) {
         this.clickOnClose()
       }
     }
