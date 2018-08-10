@@ -57,9 +57,12 @@ export default {
 
 <style lang="less" scoped>
 .backgrou {
-  position: fixed;
+  position: absolute;
+  top: 0;
+  left: 100vw;
+  bottom: 0;
   width: 100vw;
-  height: 100vh;
+
   background-color: rgba(0, 0, 0, 0.5);
   overflow: scroll;
 }
@@ -73,6 +76,7 @@ export default {
   background-color: #17181b;
   border-radius: 10px 10px 10px 10px;
   box-shadow: 0px 0px 15px black;
+  }
   h1 {
     color: white;
     font-family: Verdana, sans-serif;
@@ -106,6 +110,5 @@ export default {
     border-radius: 10px 10px 10px 10px;
     border: 0;
   }
-}
 /* <--------------------------------------------> */
 </style>
