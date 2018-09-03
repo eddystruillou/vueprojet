@@ -1,6 +1,10 @@
 <template>
   <div class="movie" @click="selectMovie()">
     <img :src="getImgUrl(movie)" />
+    <div>
+      <button tag="button" @click.stop="updateMovie()">Update</button>
+      <button tag="button" @click.stop="deleteMovie()">Delete</button>
+    </div>
     <Loader v-if="loading.value"/>
     <h4>{{ movie.title }}</h4>
   </div>
@@ -38,6 +42,25 @@ export default {
     } catch (error) {
       console.log(error)
     }
+    },
+    //Aller sur la page formulaire sans utiliser le router-link dans le html
+    updateMovie () {
+      this.$router.push(`/formulaire/${this.movie.id}`)
+    },
+    //Supprimer un film à l'aide du bouton Delete
+    async deleteMovie () {
+      // fetch
+      try {
+        const rawResponse = await fetch('http://localhost:5000/Delete/' + this.movie.id, {
+          method: 'DELETE'
+        })
+        if(rawResponse.ok) {
+          const index = moviesState.movies.indexOf(this.movie)
+          moviesState.movies.splice(index, 1);
+        }
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 }

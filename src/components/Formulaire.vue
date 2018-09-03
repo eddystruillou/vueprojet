@@ -32,23 +32,40 @@ export default {
   name: 'Formulaire',
   data () {
     return {
+      id: null,
       nom: null,
       image: null,
       synopsis: null,
       errors: null
     }
   },
+  async mounted () {
+    //SI la route a un ID, l'ID égale l'ID de notre route
+    if(this.$route.params.id) {
+      this.id = this.$route.params.id
+      //Fetch pour récupérer le nom, l'image et le synopsis de notre movie
+      try {
+        let response = await fetch('http://localhost:5000/filtreMovies/' + this.id)
+        const mov = await response.json()
+        this.nom = mov.title
+        this.image = mov.imagesURL
+        this.synopsis = mov.synopsis
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  },
+
   methods: {
     async checkForm (e) {
       try {
-        const rawResponse = await fetch('http://localhost:5000/Movies', {
+        const rawResponse = await fetch('http://localhost:5000/Movies/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({title: this.nom, imagesURL: this.image, synopsis: this.synopsis})
+        body: JSON.stringify({id: this.id || '', title: this.nom, imagesURL: this.image, synopsis: this.synopsis})
       });
-  
       const statu = await rawResponse.status;
       if (!rawResponse.ok) {
         if (rawResponse.status === 400) {
@@ -58,7 +75,8 @@ export default {
           this.errors = ['Une erreur est survenue']
         }
       } else {
-        this.$router.go(-1)
+        //Changement de la route au moment ou l'update a été valide pour retourner sur la page des movies
+        this.$router.push('/')
         console.log(statu)
       }
       } catch (error) {

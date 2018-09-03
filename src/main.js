@@ -3,13 +3,15 @@ import App from './App.vue'
 import VueRouter from 'vue-router'
 import Formulaire from './components/Formulaire.vue'
 import MovieListPage from './components/MovieListPage.vue'
+import VueSocket from 'vue-socket.io'
 
+Vue.use(VueSocket, 'http://localhost:5010')
 Vue.use(VueRouter)
 Vue.config.productionTip = false
 
 const routes = [
   { path: '/', component: MovieListPage },
-  { path: '/formulaire', component: Formulaire }
+  { path: '/formulaire/:id?', component: Formulaire }
 ]
 
 const router = new VueRouter({

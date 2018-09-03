@@ -40,6 +40,25 @@ export default {
     } catch (error) {
       console.log(error)
     }
+  },
+  sockets: {
+    'insert-movie': function (movie) {
+      this.moviesState.movies.push(movie)
+    },
+    'delete-movie': function (id) {
+      console.log(id);
+      
+      const movie = this.moviesState.movies.find(movie => {
+        return movie.id == id
+      })
+      movie && this.moviesState.movies.splice(this.moviesState.movies.indexOf(movie), 1)
+    },
+    'update-movie': function (movie) {
+      const movieUpdate = this.moviesState.movies.find(movie => {
+        return movie
+      })
+      this.moviesState.movies.splice(this.moviesState.movies.indexOf(movie), 1)
+    }
   }
 }
 </script>
