@@ -36,7 +36,7 @@ export default {
       // fetch
     try {
       this.loading.value = true
-      let response = await fetch('http://localhost:5000/filtreMovies/' + this.movie.id)
+      let response = await fetch('http://localhost:5000/filtreMovies/' + this.movie._id)
       this.moviesState.selectedMovie = await response.json()
       this.loading.value = false
     } catch (error) {
@@ -45,13 +45,13 @@ export default {
     },
     //Aller sur la page formulaire sans utiliser le router-link dans le html
     updateMovie () {
-      this.$router.push(`/formulaire/${this.movie.id}`)
+      this.$router.push(`/formulaire/${this.movie._id}`)
     },
     //Supprimer un film à l'aide du bouton Delete
     async deleteMovie () {
       // fetch
       try {
-        const rawResponse = await fetch('http://localhost:5000/Delete/' + this.movie.id, {
+        const rawResponse = await fetch('http://localhost:5000/Delete/' + this.movie._id, {
           method: 'DELETE'
         })
         if(rawResponse.ok) {

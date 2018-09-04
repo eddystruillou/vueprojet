@@ -32,7 +32,7 @@ export default {
   name: 'Formulaire',
   data () {
     return {
-      id: null,
+      _id: null,
       nom: null,
       image: null,
       synopsis: null,
@@ -47,6 +47,7 @@ export default {
       try {
         let response = await fetch('http://localhost:5000/filtreMovies/' + this.id)
         const mov = await response.json()
+        this._id = mov._id
         this.nom = mov.title
         this.image = mov.imagesURL
         this.synopsis = mov.synopsis
@@ -64,7 +65,7 @@ export default {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({id: this.id || '', title: this.nom, imagesURL: this.image, synopsis: this.synopsis})
+        body: JSON.stringify({id: this._id || '', title: this.nom, imagesURL: this.image, synopsis: this.synopsis})
       });
       const statu = await rawResponse.status;
       if (!rawResponse.ok) {

@@ -49,7 +49,7 @@ export default {
       console.log(id);
       
       const movie = this.moviesState.movies.find(movie => {
-        return movie.id == id
+        return movie._id == id
       })
       movie && this.moviesState.movies.splice(this.moviesState.movies.indexOf(movie), 1)
     },
