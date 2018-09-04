@@ -1,7 +1,7 @@
 <template>
   <div id="app">
+    <router-link to="/formulaire" tag="button" class="formu">Formulaire</router-link>
     <Header msg="Movies"/>
-      <router-link to="/formulaire" tag="button">Formulaire</router-link>
       <router-view></router-view>
   </div>
 </template>
@@ -27,5 +27,19 @@ export default {
   overflow: hidden;
   height: 100vh;
   width: 100vw;
+  .formu {
+    width: 200px;
+    height: 40px;
+    font-size: 20px;
+    font-family: Verdana, sans-serif;
+    color: white;
+    background-color: #2b71d8;
+    border-radius: 10px 10px 10px 10px;
+    border: 0;
+    position: absolute;
+    top: 85%;
+    right: 5%;
+    z-index: 2;
+  }
 }
 </style>

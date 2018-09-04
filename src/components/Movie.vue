@@ -1,7 +1,7 @@
 <template>
   <div class="movie" @click="selectMovie()">
     <img :src="getImgUrl(movie)" />
-    <div>
+    <div id="updel">
       <button tag="button" @click.stop="updateMovie()">Update</button>
       <button tag="button" @click.stop="deleteMovie()">Delete</button>
     </div>
@@ -91,6 +91,19 @@ export default {
     &:hover {
       transform: scale(1.2);
       border: solid #2b71d8;
+    }
+  }
+  #updel {
+    display: flex;
+    justify-content: space-between;
+    button {
+      height: 30px;
+      font-size: 20px;
+      font-family: Verdana, sans-serif;
+      color: white;
+      background-color: #2b71d8;
+      border-radius: 10px 10px 10px 10px;
+      border: 0;
     }
   }
   @media screen and (max-width: 1024px) {
